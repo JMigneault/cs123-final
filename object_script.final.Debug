@@ -1,0 +1,13 @@
+debug/mainwindow.o
+debug/resourceloader.o
+debug/vao.o
+debug/vbo.o
+debug/vboattribmarker.o
+debug/main.o
+debug/glew.o
+debug/openglshape.o
+debug/view.o
+debug/viewformat.o
+debug/qrc_resources.o
+debug/moc_mainwindow.o
+debug/moc_view.o

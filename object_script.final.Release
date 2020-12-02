@@ -1,0 +1,13 @@
+release/mainwindow.o
+release/resourceloader.o
+release/vao.o
+release/vbo.o
+release/vboattribmarker.o
+release/main.o
+release/glew.o
+release/openglshape.o
+release/view.o
+release/viewformat.o
+release/qrc_resources.o
+release/moc_mainwindow.o
+release/moc_view.o
