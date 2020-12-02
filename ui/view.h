@@ -7,6 +7,7 @@
 #include <QTimer>
 
 #include <glm.hpp>
+#include "gl/datatype/fbo.h"
 
 class OpenGLShape;
 
@@ -24,9 +25,12 @@ private:
 
     // added
     std::unique_ptr<OpenGLShape> m_testShape;
+    std::unique_ptr<OpenGLShape> m_quad;
     GLuint m_testProgram;
+    GLuint m_crepProgram;
     glm::mat4 m_mvp;
     glm::vec3 m_color;
+    std::unique_ptr<GL::FBO> m_testFBO;
 
     void initializeGL();
     void paintGL();

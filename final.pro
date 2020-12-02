@@ -23,9 +23,17 @@ win32 {
 
 SOURCES += ui/mainwindow.cpp \
     cs123_lib/resourceloader.cpp \
+    gl/datatype/fbo.cpp \
     gl/datatype/vao.cpp \
     gl/datatype/vbo.cpp \
     gl/datatype/vboattribmarker.cpp \
+    gl/gldebug.cpp \
+    gl/textures/depthbuffer.cpp \
+    gl/textures/renderbuffer.cpp \
+    gl/textures/texture.cpp \
+    gl/textures/texture2d.cpp \
+    gl/textures/textureparameters.cpp \
+    gl/textures/textureparametersbuilder.cpp \
     main.cpp \
     glew-1.10.0/src/glew.c \
     openglshape.cpp \
@@ -35,10 +43,18 @@ SOURCES += ui/mainwindow.cpp \
 HEADERS += ui/mainwindow.h \
     cs123_lib/resourceloader.h \
     cs123_lib/sphere.h \
+    gl/datatype/fbo.h \
     gl/datatype/vao.h \
     gl/datatype/vbo.h \
     gl/datatype/vboattribmarker.h \
+    gl/gldebug.h \
     gl/shaders/shaderattriblocations.h \
+    gl/textures/depthbuffer.h \
+    gl/textures/renderbuffer.h \
+    gl/textures/texture.h \
+    gl/textures/texture2d.h \
+    gl/textures/textureparameters.h \
+    gl/textures/textureparametersbuilder.h \
     openglshape.h \
     ui_mainwindow.h \
     glew-1.10.0/include/GL/glew.h \
@@ -77,12 +93,14 @@ RESOURCES += \
     resources.qrc
 
 DISTFILES += \
+    shaders/crep.frag \
     shaders/normals/normals.vert \
     shaders/normals/normals.frag \
     shaders/normals/normals.gsh \
     shaders/normals/normalsArrow.gsh \
     shaders/normals/normalsArrow.frag \
     shaders/normals/normalsArrow.vert \
+    shaders/quad.vert \
     shaders/testShader.frag \
     shaders/testShader.frag \
     shaders/testShader.vert \

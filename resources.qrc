@@ -4,5 +4,7 @@
         <file alias="default.vert">shaders/shader.vert</file>
         <file alias="test.vert">shaders/testShader.vert</file>
         <file alias="test.frag">shaders/testShader.frag</file>
+        <file alias="quad.vert">shaders/quad.vert</file>
+        <file alias="crep.frag">shaders/crep.frag</file>
     </qresource>
 </RCC>

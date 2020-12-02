@@ -15,6 +15,8 @@
 
 #include "glm/gtc/type_ptr.hpp"   // glm::value_ptr
 
+#include "gl/textures/texture2d.h"
+
 
 // Added
 #include <QTextStream>
@@ -66,8 +68,6 @@ void View::initializeGL() {
     glCullFace(GL_BACK);
     glFrontFace(GL_CCW);
 
-    glDisable(GL_CULL_FACE);
-
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
     uint errr = glGetError();
@@ -75,9 +75,12 @@ void View::initializeGL() {
     m_testProgram = ResourceLoader::createShaderProgram(
                 ":/shaders/test.vert", ":/shaders/test.frag");
 
-    /* std::vector<GLfloat> data = {-0.5f, -.5f, 0,
+    m_crepProgram = ResourceLoader::createShaderProgram(
+                ":/shaders/quad.vert", ":/shaders/crep.frag");
+
+    std::vector<GLfloat> data = {-0.5f, -.5f, 0,
                                  .5f, -.5f, 0,
-                                 0, .5f, 0}; */
+                                 0, .5f, 0};
 
     std::vector<GLfloat> sphereData = SPHERE_VERTEX_POSITIONS;
 
@@ -86,9 +89,10 @@ void View::initializeGL() {
     errr = glGetError();
 
     // Initialize VBO
-    m_testShape->setVertexData(&sphereData[0], sphereData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLES, NUM_SPHERE_VERTICES);
+    // m_testShape->setVertexData(&sphereData[0], sphereData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLES, NUM_SPHERE_VERTICES);
+    m_testShape->setVertexData(&data[0], data.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLES, 3);
 
-errr = glGetError();
+    errr = glGetError();
 
     // Add attributes
     m_testShape->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
@@ -114,6 +118,27 @@ errr = glGetError();
     glm::mat4 modelTrans = glm::mat4(1.0f);
 
     m_mvp = projTrans * viewTrans * modelTrans;
+
+    // Make FBOs
+    m_testFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+                                      width(), height(),
+                                      TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
+                                      TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
+
+    // Make fullscreen quad
+
+    std::vector<GLfloat> quadData = {-1.0f, 1.0f, 0, 0,
+                                      -1.0f, -1.0f, 0, 1,
+                                      1.0,   1.0f, 1, 0,
+                                      1.0f, -1.0f, 1, 1};
+
+    m_quad = std::make_unique<OpenGLShape>();
+    m_quad->setVertexData(&quadData[0], quadData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLE_STRIP, 4);
+    m_quad->setAttribute(ShaderAttrib::POSITION, 2, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    m_quad->setAttribute(ShaderAttrib::TEXCOORD0, 2, 2*sizeof(GLfloat), VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    m_quad->buildVAO();
+
+    errr = glGetError();
 
 
     /*
@@ -240,6 +265,10 @@ errr = glGetError();
 void View::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+    // FBO
+    m_testFBO->bind();
+
+
     // TODO: Implement the demo rendering here
     glUseProgram(m_testProgram);
 
@@ -255,10 +284,23 @@ void View::paintGL() {
 
     glUseProgram(0);
 
+    // Bind texture
+    m_testFBO->getColorAttachment(0).bind();
+
+    m_testFBO->unbind();
+
+    glUseProgram(m_crepProgram);
+
+    glm::vec3 newColor = glm::vec3(1, 1, 1);
+
+    colorUniformLoc = glGetUniformLocation(m_crepProgram, "color");
+    glUniform3fv(colorUniformLoc, 1, glm::value_ptr(newColor));
+
+    m_quad->draw();
+
+    glUseProgram(0);
 
 }
-
-
 
 void View::resizeGL(int w, int h) {
     float ratio = static_cast<QGuiApplication *>(QCoreApplication::instance())->devicePixelRatio();
@@ -266,17 +308,7 @@ void View::resizeGL(int w, int h) {
     h = static_cast<int>(h / ratio);
     glViewport(0, 0, w, h);
 
-    // VERY TEMP
-    glm::mat4 projTrans = glm::perspective(.8f, (float) width() / (float) height(), 0.1f, 100.0f);
-    glm::mat4 viewTrans = glm::lookAt(
-                glm::vec3(0,0,1), // Camera is at (0,0,1), in World Space
-                glm::vec3(0,0,0), // and looks at the origin
-                glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
-                );
-    // Model matrix : an identity matrix (model will be at the origin)
-    glm::mat4 modelTrans = glm::mat4(1.0f);
-
-    m_mvp = projTrans * viewTrans * modelTrans;
+    // TODO: change mvp?
 
 }
 
