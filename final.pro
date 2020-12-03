@@ -94,12 +94,15 @@ RESOURCES += \
 
 DISTFILES += \
     shaders/crep.frag \
+    shaders/light.frag \
+    shaders/merge.frag \
     shaders/normals/normals.vert \
     shaders/normals/normals.frag \
     shaders/normals/normals.gsh \
     shaders/normals/normalsArrow.gsh \
     shaders/normals/normalsArrow.frag \
     shaders/normals/normalsArrow.vert \
+    shaders/occl.frag \
     shaders/quad.vert \
     shaders/testShader.frag \
     shaders/testShader.frag \

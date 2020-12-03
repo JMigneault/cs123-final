@@ -6,5 +6,8 @@
         <file alias="test.frag">shaders/testShader.frag</file>
         <file alias="quad.vert">shaders/quad.vert</file>
         <file alias="crep.frag">shaders/crep.frag</file>
+        <file alias="light.frag">shaders/light.frag</file>
+        <file alias="occl.frag">shaders/occl.frag</file>
+        <file alias="merge">shaders/merge.frag</file>
     </qresource>
 </RCC>

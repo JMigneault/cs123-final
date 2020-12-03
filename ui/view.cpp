@@ -75,8 +75,15 @@ void View::initializeGL() {
     m_testProgram = ResourceLoader::createShaderProgram(
                 ":/shaders/test.vert", ":/shaders/test.frag");
 
+    m_occlProgram = ResourceLoader::createShaderProgram(
+                ":/shaders/test.vert", ":/shaders/occl.frag");
+
+    m_lightProgram = ResourceLoader::createShaderProgram(
+                ":/shaders/quad.vert", ":/shaders/light.frag");
+
     m_crepProgram = ResourceLoader::createShaderProgram(
                 ":/shaders/quad.vert", ":/shaders/crep.frag");
+
 
     std::vector<GLfloat> data = {-0.5f, -.5f, 0,
                                  .5f, -.5f, 0,
@@ -106,21 +113,37 @@ void View::initializeGL() {
     errr = glGetError();
 
     // Set up uniform values
-    m_color = glm::vec3(1.0f, 0.5f, .31f);
+    m_color = glm::vec3(0.53f, 0.81f, 0.98f);
 
     glm::mat4 projTrans = glm::perspective(.8f, (float) width() / (float) height(), 0.1f, 100.0f);
     glm::mat4 viewTrans = glm::lookAt(
-                glm::vec3(0,0,1), // Camera is at (0,0,1), in World Space
+                glm::vec3(0,0,2.5), // Camera is at (0,0,1), in World Space
                 glm::vec3(0,0,0), // and looks at the origin
                 glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
                 );
     // Model matrix : an identity matrix (model will be at the origin)
-    glm::mat4 modelTrans = glm::mat4(1.0f);
+    glm::mat4 modelTrans = glm::translate(glm::vec3(-.7, 0, 0));
 
     m_mvp = projTrans * viewTrans * modelTrans;
 
     // Make FBOs
     m_testFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+                                      width(), height(),
+                                      TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
+                                      TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
+
+    m_occlFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+                                      width(), height(),
+                                      TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
+                                      TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
+
+    m_lightFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+                                      width(), height(),
+                                      TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
+                                      TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
+
+
+    m_crepFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
                                       width(), height(),
                                       TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
                                       TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
@@ -265,40 +288,83 @@ void View::initializeGL() {
 void View::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    // FBO
+    // Render scene to testFBO
+
     m_testFBO->bind();
 
-
-    // TODO: Implement the demo rendering here
     glUseProgram(m_testProgram);
 
     GLint mvcUniformLoc = glGetUniformLocation(m_testProgram, "mvp");
-
     GLint colorUniformLoc = glGetUniformLocation(m_testProgram, "color");
-
     glUniformMatrix4fv(mvcUniformLoc, 1, GL_FALSE, glm::value_ptr(m_mvp));
-
     glUniform3fv(colorUniformLoc, 1, glm::value_ptr(m_color));
 
     m_testShape->draw();
-
     glUseProgram(0);
-
-    // Bind texture
-    m_testFBO->getColorAttachment(0).bind();
 
     m_testFBO->unbind();
 
+    // Render occlusion geometry to occlFBO
+    m_occlFBO->bind();
+
+    glUseProgram(m_occlProgram);
+
+    mvcUniformLoc = glGetUniformLocation(m_occlProgram, "mvp");
+    glUniformMatrix4fv(mvcUniformLoc, 1, GL_FALSE, glm::value_ptr(m_mvp));
+
+    m_testShape->draw();
+    glUseProgram(0);
+
+    m_occlFBO->getColorAttachment(0).bind();
+    m_occlFBO->unbind();
+
+    // Render sunlight to lightFBO
+
+    m_lightFBO->bind();
+
+    glUseProgram(m_lightProgram);
+
+    colorUniformLoc = glGetUniformLocation(m_testProgram, "color");
+    glUniform3fv(colorUniformLoc, 1, glm::value_ptr(m_color));
+
+    m_quad->draw();
+    glUseProgram(0);
+    m_occlFBO->getColorAttachment(0).unbind();
+
+    m_lightFBO->getColorAttachment(0).bind();
+    m_lightFBO->unbind();
+
+    // Draw crepescular rays to screen (temp)
+
+    //m_crepFBO->bind();
+
     glUseProgram(m_crepProgram);
 
-    glm::vec3 newColor = glm::vec3(1, 1, 1);
-
-    colorUniformLoc = glGetUniformLocation(m_crepProgram, "color");
-    glUniform3fv(colorUniformLoc, 1, glm::value_ptr(newColor));
+    // TODO: set uniforms
 
     m_quad->draw();
 
     glUseProgram(0);
+
+    m_lightFBO->getColorAttachment(0).unbind();
+
+    /* m_crepFBO->unbind();
+
+    // Final render merging crep rays and phong shader scene
+
+    m_crepFBO->getColorAttachment(0).bind();
+    m_testFBO->getColorAttachment(0).bind();
+
+    glUseProgram(m_crepProgram);
+
+    m_quad->draw();
+
+    glUseProgram(0); */
+
+
+
+
+
 
 }
 

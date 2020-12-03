@@ -93,12 +93,15 @@ OBJECTS       = debug/mainwindow.o \
 		debug/moc_view.o
 
 DIST          = shaders/crep.frag \
+		shaders/light.frag \
+		shaders/merge.frag \
 		shaders/normals/normals.vert \
 		shaders/normals/normals.frag \
 		shaders/normals/normals.gsh \
 		shaders/normals/normalsArrow.gsh \
 		shaders/normals/normalsArrow.frag \
 		shaders/normals/normalsArrow.vert \
+		shaders/occl.frag \
 		shaders/quad.vert \
 		shaders/testShader.frag \
 		shaders/testShader.frag \
@@ -184,8 +187,11 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_resources.cpp
 debug/qrc_resources.cpp: resources.qrc \
 		C:/Qt/Qt5.14.2/5.14.2/mingw73_64/bin/rcc.exe \
+		shaders/merge.frag \
 		shaders/testShader.frag \
 		shaders/shader.frag \
+		shaders/light.frag \
+		shaders/occl.frag \
 		shaders/crep.frag \
 		shaders/quad.vert \
 		shaders/testShader.vert \

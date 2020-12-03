@@ -27,10 +27,15 @@ private:
     std::unique_ptr<OpenGLShape> m_testShape;
     std::unique_ptr<OpenGLShape> m_quad;
     GLuint m_testProgram;
+    GLuint m_occlProgram;
+    GLuint m_lightProgram;
     GLuint m_crepProgram;
     glm::mat4 m_mvp;
     glm::vec3 m_color;
     std::unique_ptr<GL::FBO> m_testFBO;
+    std::unique_ptr<GL::FBO> m_occlFBO;
+    std::unique_ptr<GL::FBO> m_lightFBO;
+    std::unique_ptr<GL::FBO> m_crepFBO;
 
     void initializeGL();
     void paintGL();
