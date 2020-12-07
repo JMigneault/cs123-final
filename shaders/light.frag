@@ -10,15 +10,15 @@ out vec4 fragColor;
 
 void main(void)
 {
-
-    vec2 lightPos = vec2(0, 0);
+    vec2 lightPos = vec2(0, .5);
 
     float s = length(lightPos - positionScreen);
 
-    float B = 15.0f; // 15.0f;
-    vec4 L0 = 3.0 * vec4(1, 1, 1, 1);
+    float B = 2.5f; // 15.0f;
+    vec4 L0 = .7 * vec4(1, 1, 1, 1);
 
-    vec4 lightColor = L0 * exp(-B * s);
+    vec4 lightColor = L0 * exp(-B * s); // L0 * (s < .3 ? 1.0 : 0.0);
+    // TODO: why is v coord being flipped??
     vec4 occlusionColor = texture(tex, uv);
 
     fragColor = (lightColor + vec4(color, 1)) * (1 - occlusionColor);

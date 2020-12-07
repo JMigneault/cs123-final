@@ -24,18 +24,27 @@ private:
     bool m_captureMouse;
 
     // added
-    std::unique_ptr<OpenGLShape> m_testShape;
+    std::unique_ptr<OpenGLShape> m_testShapes[5];
     std::unique_ptr<OpenGLShape> m_quad;
     GLuint m_testProgram;
     GLuint m_occlProgram;
     GLuint m_lightProgram;
     GLuint m_crepProgram;
-    glm::mat4 m_mvp;
-    glm::vec3 m_color;
+    glm::mat4 m_model[5];
+    glm::mat4 m_view;
+    glm::mat4 m_projection;
+    glm::vec3 m_colors[5];
+    glm::vec3 m_skyColor;
+    float m_weight;
+    float m_secondsPassed;
+    float m_displacement;
+    boolean m_isPlaying;
     std::unique_ptr<GL::FBO> m_testFBO;
     std::unique_ptr<GL::FBO> m_occlFBO;
     std::unique_ptr<GL::FBO> m_lightFBO;
     std::unique_ptr<GL::FBO> m_crepFBO;
+    float m_width;
+    float m_height;
 
     void initializeGL();
     void paintGL();
@@ -50,6 +59,7 @@ private:
 
     // added
     void drawTest();
+    void setParticleViewport();
 
 private slots:
     void tick();

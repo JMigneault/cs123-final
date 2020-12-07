@@ -21,9 +21,12 @@
 // Added
 #include <QTextStream>
 
+
+
+
 View::View(QWidget *parent) : QGLWidget(ViewFormat(), parent),
-    m_time(), m_timer(), m_captureMouse(false),
-    m_testShape(nullptr), m_testProgram(0) // added
+    m_time(), m_timer(), m_captureMouse(false), m_weight(3.0), m_secondsPassed(0.0), m_isPlaying(false),
+     m_testProgram(0), m_width(800.0), m_height(800.0) // added // m_testShapes(nullptr),
 {
     // View needs all mouse move events, not just mouse drag events
     setMouseTracking(true);
@@ -85,35 +88,72 @@ void View::initializeGL() {
                 ":/shaders/quad.vert", ":/shaders/crep.frag");
 
 
-    std::vector<GLfloat> data = {-0.5f, -.5f, 0,
+    std::vector<GLfloat> triangleData = {-0.5f, -.5f, 0,
                                  .5f, -.5f, 0,
                                  0, .5f, 0};
 
+    std::vector<GLfloat> rectangleData = {-1.0f, 1.0f, 0,
+                                      -1.0f, -1.0f, 0,
+                                      1.0,   1.0f, 0,
+                                      1.0f, -1.0f, 0};
+
     std::vector<GLfloat> sphereData = SPHERE_VERTEX_POSITIONS;
 
-    m_testShape = std::make_unique<OpenGLShape>();
-
-    errr = glGetError();
-
+    // Triangle 1
+    m_testShapes[0] = std::make_unique<OpenGLShape>();
     // Initialize VBO
     // m_testShape->setVertexData(&sphereData[0], sphereData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLES, NUM_SPHERE_VERTICES);
-    m_testShape->setVertexData(&data[0], data.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLES, 3);
-
-    errr = glGetError();
-
+    m_testShapes[0]->setVertexData(&triangleData[0], triangleData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLES, 3);
     // Add attributes
-    m_testShape->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
-    m_testShape->setAttribute(ShaderAttrib::NORMAL, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
-
-    errr = glGetError();
-
+    m_testShapes[0]->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    // m_testShapes[0]->setAttribute(ShaderAttrib::NORMAL, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
     // Build VAO
-    m_testShape->buildVAO();
+    m_testShapes[0]->buildVAO();
+    // Model matrix
+    m_model[0] = glm::translate(glm::vec3(-.1, -1.2, -1)) * glm::scale(glm::vec3(2.0, 3.0, 1.0));
+    m_colors[0] = glm::vec3(0.0f, 1.0f, 0.0f);
+
+    // triangle 2
+    m_testShapes[1] = std::make_unique<OpenGLShape>();
+    m_testShapes[1]->setVertexData(&triangleData[0], triangleData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLES, 3);
+    m_testShapes[1]->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    m_testShapes[1]->buildVAO();
+    m_model[1] = glm::translate(glm::vec3(.3, -.75, -1)) * glm::scale(glm::vec3(2.0, 3.0, 1.0));
+    m_colors[1] = glm::vec3(1.0f, 0.0f, 0.0f);
+
+
+    // square 1
+    m_testShapes[2] = std::make_unique<OpenGLShape>();
+    m_testShapes[2]->setVertexData(&rectangleData[0], rectangleData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLE_STRIP, 4);
+
+    m_testShapes[2]->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    m_testShapes[2]->buildVAO();
+    m_model[2] = glm::scale(glm::vec3(2.0, 1.0, 1.0)) * glm::translate(glm::vec3(0, -1.8f, 0));
+    m_colors[2] = glm::vec3(.55f, .27f, 0.075f);
+
+
+    // square 2
+    m_testShapes[3] = std::make_unique<OpenGLShape>();
+    m_testShapes[3]->setVertexData(&rectangleData[0], rectangleData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLE_STRIP, 4);
+    m_testShapes[3]->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    m_testShapes[3]->buildVAO();
+    m_model[3] = glm::scale(glm::vec3(1.0, 2.0, 1.0)) * glm::translate(glm::vec3(-1.75, 0, 0));
+    m_colors[3] = glm::vec3(.55f, .27f, 0.075f);
+
+
+    // square 3
+    m_testShapes[4] = std::make_unique<OpenGLShape>();
+    m_testShapes[4]->setVertexData(&rectangleData[0], rectangleData.size(), VBO::GEOMETRY_LAYOUT::LAYOUT_TRIANGLE_STRIP, 4);
+    m_testShapes[4]->setAttribute(ShaderAttrib::POSITION, 3, 0, VBOAttribMarker::DATA_TYPE::FLOAT, false);
+    m_testShapes[4]->buildVAO();
+    m_model[4] = glm::scale(glm::vec3(1.0, 2.0, 1.0)) * glm::translate(glm::vec3(1.75, 0, 0));
+    m_colors[4] = glm::vec3(.55f, .27f, 0.075f);
+
 
     errr = glGetError();
 
     // Set up uniform values
-    m_color = glm::vec3(0.53f, 0.81f, 0.98f);
+    m_skyColor = glm::vec3(0.05f, 0.05f, 0.12f);
 
     glm::mat4 projTrans = glm::perspective(.8f, (float) width() / (float) height(), 0.1f, 100.0f);
     glm::mat4 viewTrans = glm::lookAt(
@@ -121,10 +161,9 @@ void View::initializeGL() {
                 glm::vec3(0,0,0), // and looks at the origin
                 glm::vec3(0,1,0)  // Head is up (set to 0,-1,0 to look upside-down)
                 );
-    // Model matrix : an identity matrix (model will be at the origin)
-    glm::mat4 modelTrans = glm::translate(glm::vec3(-.7, 0, 0));
 
-    m_mvp = projTrans * viewTrans * modelTrans;
+    m_projection = projTrans;
+    m_view = viewTrans;
 
     // Make FBOs
     m_testFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
@@ -289,34 +328,58 @@ void View::paintGL() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Render scene to testFBO
-
+/*
     m_testFBO->bind();
 
     glUseProgram(m_testProgram);
 
+ */
     GLint mvcUniformLoc = glGetUniformLocation(m_testProgram, "mvp");
     GLint colorUniformLoc = glGetUniformLocation(m_testProgram, "color");
-    glUniformMatrix4fv(mvcUniformLoc, 1, GL_FALSE, glm::value_ptr(m_mvp));
-    glUniform3fv(colorUniformLoc, 1, glm::value_ptr(m_color));
+/*
+    for (int i = 0; i < 5; i++) {
+        glUniformMatrix4fv(mvcUniformLoc, 1, GL_FALSE, glm::value_ptr(m_projection * m_view * m_model[i]));
+        glUniform3fv(colorUniformLoc, 1, glm::value_ptr(m_colors[i]));
+        m_testShapes[i]->draw();
+    }
 
-    m_testShape->draw();
     glUseProgram(0);
 
     m_testFBO->unbind();
+    */
 
     // Render occlusion geometry to occlFBO
     m_occlFBO->bind();
 
     glUseProgram(m_occlProgram);
 
-    mvcUniformLoc = glGetUniformLocation(m_occlProgram, "mvp");
-    glUniformMatrix4fv(mvcUniformLoc, 1, GL_FALSE, glm::value_ptr(m_mvp));
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
 
-    m_testShape->draw();
+    glViewport(0, 0, m_width, m_height);
+
+
+    mvcUniformLoc = glGetUniformLocation(m_occlProgram, "mvp");
+    // glUniformMatrix4fv(mvcUniformLoc, 1, GL_FALSE, m_mvp);
+
+
+    for (int i = 0; i < 5; i++) {
+        glm::mat4 m = m_model[i];
+        if (i < 3) {
+            m *= glm::translate(glm::vec3(m_displacement, 0, 0));
+        }
+        glUniformMatrix4fv(mvcUniformLoc, 1, GL_FALSE, glm::value_ptr(m_projection * m_view * m));
+
+        m_testShapes[i]->draw();
+    }
+
+    // m_testShape->draw();
     glUseProgram(0);
 
     m_occlFBO->getColorAttachment(0).bind();
     m_occlFBO->unbind();
+
+
 
     // Render sunlight to lightFBO
 
@@ -324,8 +387,13 @@ void View::paintGL() {
 
     glUseProgram(m_lightProgram);
 
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    glViewport(0, 0, m_width, m_height);
+
     colorUniformLoc = glGetUniformLocation(m_testProgram, "color");
-    glUniform3fv(colorUniformLoc, 1, glm::value_ptr(m_color));
+    glUniform3fv(colorUniformLoc, 1, glm::value_ptr(m_skyColor));
 
     m_quad->draw();
     glUseProgram(0);
@@ -336,11 +404,17 @@ void View::paintGL() {
 
     // Draw crepescular rays to screen (temp)
 
-    //m_crepFBO->bind();
+    // m_crepFBO->bind();
 
     glUseProgram(m_crepProgram);
 
+    setParticleViewport();
+
+
     // TODO: set uniforms
+
+    GLint weightUniformLoc = glGetUniformLocation(m_crepProgram, "weightParam");
+    glUniform1f(weightUniformLoc, m_weight);
 
     m_quad->draw();
 
@@ -348,8 +422,9 @@ void View::paintGL() {
 
     m_lightFBO->getColorAttachment(0).unbind();
 
-    /* m_crepFBO->unbind();
+    // m_crepFBO->unbind();
 
+    /*
     // Final render merging crep rays and phong shader scene
 
     m_crepFBO->getColorAttachment(0).bind();
@@ -363,18 +438,47 @@ void View::paintGL() {
 
 
 
+}
 
-
-
+// Sets the viewport to ensure that {0,0} is always in the center of the viewport
+// in clip space, and to ensure that the aspect ratio is 1:1
+void View::setParticleViewport() {
+    int maxDim = std::max(m_width, m_height);
+    int x = (m_width - maxDim) / 2.0f;
+    int y = (m_height - maxDim) / 2.0f;
+    glViewport(x, y, maxDim, maxDim);
 }
 
 void View::resizeGL(int w, int h) {
     float ratio = static_cast<QGuiApplication *>(QCoreApplication::instance())->devicePixelRatio();
     w = static_cast<int>(w / ratio);
     h = static_cast<int>(h / ratio);
+    m_width = w;
+    m_height = h;
     glViewport(0, 0, w, h);
 
-    // TODO: change mvp?
+    // Make FBOs
+    m_testFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+                                      w, h,
+                                      TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
+                                      TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
+
+    m_occlFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+                                      w, h,
+                                      TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
+                                      TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
+
+    m_lightFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+                                       w, h,
+                                      TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
+                                      TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
+
+
+    m_crepFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+                                      w, h,
+                                      TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
+                                      TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
+
 
 }
 
@@ -408,16 +512,36 @@ void View::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Escape) QApplication::quit();
 
     // TODO: Handle keyboard presses here
+    if (event->key() == Qt::Key_P) {
+        m_isPlaying = !m_isPlaying;
+    }
 }
 
 void View::keyReleaseEvent(QKeyEvent *event) {
-
 }
 
 void View::tick() {
     // Get the number of seconds since the last tick (variable update rate)
     float seconds = m_time.restart() * 0.001f;
 
+    if (m_isPlaying) {
+
+    m_secondsPassed += seconds;
+    if (m_secondsPassed > 20.0) {
+        m_secondsPassed -= 20.0f;
+    }
+
+    float MINWEIGHT = 1.0;
+    float MAXWEIGHT = 3.5;
+    float p = glm::mod(m_secondsPassed, 20.0f);
+    if (p < 10.0) {
+        m_weight = (p / 10.0f) * (MAXWEIGHT - MINWEIGHT) + MINWEIGHT;
+        m_displacement = 0.0f;
+    } else {
+        m_weight = MAXWEIGHT;
+        m_displacement = ((p - 10.0) / 10.0f) * -0.3;
+    }
+    }
     // TODO: Implement the demo update here
 
     // Flag this view for repainting (Qt will call paintGL() soon after)
