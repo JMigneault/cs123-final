@@ -1,8 +1,8 @@
-#include "texture2d.h"
+#include "Texture2D.h"
 
 #include <utility>
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 Texture2D::Texture2D(unsigned char *data, int width, int height, GLenum type)
 {
@@ -28,4 +28,4 @@ void Texture2D::unbind() const {
     glBindTexture(GL_TEXTURE_2D, 0); // correct?
 }
 
-}
+}}

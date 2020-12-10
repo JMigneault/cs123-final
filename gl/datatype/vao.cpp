@@ -1,8 +1,9 @@
-#include "vao.h"
+#include "VAO.h"
 
-#include "vbo.h"
+#include "VBO.h"
+#include "IBO.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 VAO::VAO(const VBO &vbo, int numberOfVerticesToRender) :
     m_drawMethod(DRAW_ARRAYS),
@@ -65,7 +66,6 @@ VAO::~VAO()
 }
 
 
-
 void VAO::draw() {
     draw(m_numVertices);
 }
@@ -90,4 +90,4 @@ void VAO::unbind() {
     glBindVertexArray(0);
 }
 
-}
+}}

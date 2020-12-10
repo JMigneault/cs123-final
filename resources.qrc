@@ -2,12 +2,20 @@
     <qresource prefix="/shaders">
         <file alias="default.frag">shaders/shader.frag</file>
         <file alias="default.vert">shaders/shader.vert</file>
-        <file alias="test.vert">shaders/testShader.vert</file>
-        <file alias="test.frag">shaders/testShader.frag</file>
-        <file alias="quad.vert">shaders/quad.vert</file>
-        <file alias="crep.frag">shaders/crep.frag</file>
-        <file alias="light.frag">shaders/light.frag</file>
-        <file alias="occl.frag">shaders/occl.frag</file>
-        <file alias="merge">shaders/merge.frag</file>
+        <file alias="wireframe.frag">shaders/wireframe/wireframe.frag</file>
+        <file alias="wireframe.vert">shaders/wireframe/wireframe.vert</file>
+        <file alias="fullscreenquad.vert">shaders/fullscreenquad/fullscreenquad.vert</file>
+        <file alias="fullscreenquad.frag">shaders/fullscreenquad/fullscreenquad.frag</file>
+        <file alias="normals.frag">shaders/normals/normals.frag</file>
+        <file alias="normals.gsh">shaders/normals/normals.gsh</file>
+        <file alias="normals.vert">shaders/normals/normals.vert</file>
+        <file alias="normalsArrow.frag">shaders/normals/normalsArrow.frag</file>
+        <file alias="normalsArrow.gsh">shaders/normals/normalsArrow.gsh</file>
+        <file alias="normalsArrow.vert">shaders/normals/normalsArrow.vert</file>
+        <file alias="occl.frag">shaders/final/occl.frag</file>
+        <file alias="crep.frag">shaders/final/crep.frag</file>
+        <file alias="light.frag">shaders/final/light.frag</file>
+        <file alias="merge.frag">shaders/final/merge.frag</file>
+        <file alias="quad.vert">shaders/final/quad.vert</file>
     </qresource>
 </RCC>

@@ -9,13 +9,13 @@
 #include "gl/datatype/vbo.h"
 #include "gl/datatype/vboattribmarker.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 class VAO;
 
-}
+} }
 
-using namespace GL;
+using namespace CS123::GL;
 
 class OpenGLShape {
 public:
@@ -42,7 +42,7 @@ private:
     VBO::GEOMETRY_LAYOUT m_drawMode;            /// drawing mode
     int m_numVertices;                          /// number of vertices to be rendered
     std::vector<VBOAttribMarker> m_markers;     /// list of VBOAttribMarkers that describe how the data is laid out.
-    std::unique_ptr<GL::VAO> m_VAO;      /// a wrapper for the vertex array object (VAO)
+    std::unique_ptr<VAO> m_VAO;      /// a wrapper for the vertex array object (VAO)
 
 };
 

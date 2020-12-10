@@ -1,6 +1,6 @@
-#include "vboattribmarker.h"
+#include "VBOAttribMarker.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 VBOAttribMarker::VBOAttribMarker(GLuint name, GLuint numElementsPerVertex, int offset, DATA_TYPE type , bool normalize) :
     name(name),
@@ -9,7 +9,6 @@ VBOAttribMarker::VBOAttribMarker(GLuint name, GLuint numElementsPerVertex, int o
     numElements(numElementsPerVertex),
     offset(offset)
 {
-
 }
 
-}
+}}

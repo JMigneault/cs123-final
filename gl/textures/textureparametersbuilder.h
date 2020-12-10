@@ -1,9 +1,9 @@
 #ifndef TEXTUREPARAMETERSBUILDER_H
 #define TEXTUREPARAMETERSBUILDER_H
 
-#include "textureparameters.h"
+#include "TextureParameters.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 class TextureParametersBuilder {
 public:
@@ -19,6 +19,6 @@ private:
     TextureParameters::WRAP_METHOD m_wrapMethod;
 };
 
-}
+}}
 
 #endif // TEXTUREPARAMETERSBUILDER_H

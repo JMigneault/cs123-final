@@ -1,13 +1,11 @@
 #ifndef VBO_H
 #define VBO_H
 
-
-
 #include <vector>
 
 #include "GL/glew.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 class VBOAttribMarker;
 
@@ -50,6 +48,6 @@ private:
     GEOMETRY_LAYOUT m_triangleLayout;
 };
 
-}
+}}
 
 #endif // VBO_H

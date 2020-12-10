@@ -1,9 +1,9 @@
 #ifndef DEPTHBUFFER_H
 #define DEPTHBUFFER_H
 
-#include "renderbuffer.h"
+#include "RenderBuffer.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 class DepthBuffer : public RenderBuffer {
 public:
@@ -14,6 +14,6 @@ private:
     int m_height;
 };
 
-}
+}}
 
 #endif // DEPTHBUFFER_H

@@ -1,4 +1,4 @@
-#include "texture.h"
+#include "Texture.h"
 
 #include <cassert>
 #include <utility>
@@ -6,7 +6,7 @@
 #include <GL/glew.h>
 #include "gl/GLDebug.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 Texture::Texture() :
     m_handle(0)
@@ -38,4 +38,4 @@ unsigned int Texture::id() const {
     return m_handle;
 }
 
-}
+}}

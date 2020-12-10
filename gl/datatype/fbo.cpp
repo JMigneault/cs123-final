@@ -8,7 +8,7 @@
 #include "gl/textures/Texture2D.h"
 #include "gl/textures/TextureParametersBuilder.h"
 
-using namespace GL;
+using namespace CS123::GL;
 
 FBO::FBO(int numberOfColorAttachments, DEPTH_STENCIL_ATTACHMENT attachmentType, int width, int height,
          TextureParameters::WRAP_METHOD wrapMethod,

@@ -2,7 +2,7 @@
 
 #include "gl/datatype/vao.h"
 
-using namespace GL;
+using namespace CS123::GL;
 
 OpenGLShape::OpenGLShape() :
     m_size(0),
@@ -44,7 +44,7 @@ void OpenGLShape::setAttribute(GLuint name, GLuint numElementsPerVertex, int off
 }
 
 void OpenGLShape::buildVAO() {
-    GL::VBO vbo = VBO(m_data, m_size, m_markers, m_drawMode);
+    VBO vbo = VBO(m_data, m_size, m_markers, m_drawMode);
     m_VAO = std::make_unique<VAO>(vbo, m_numVertices);
 }
 

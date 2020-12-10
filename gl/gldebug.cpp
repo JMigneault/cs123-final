@@ -1,11 +1,11 @@
-#include "gldebug.h"
+#include "GLDebug.h"
 
 #include <iostream>
 #include <vector>
 
 #include <GL/glew.h>
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 void checkError() {
     GLenum err = glGetError();
@@ -118,4 +118,4 @@ void checkShaderLinkStatus(GLuint shaderProgramID) {
     }
 }
 
-}
+}}

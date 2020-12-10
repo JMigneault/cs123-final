@@ -3,7 +3,7 @@
 
 #include "GL/glew.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 class Texture2D;
 
@@ -27,6 +27,6 @@ private:
     WRAP_METHOD m_wrapMethod;
 };
 
-}
+}}
 
 #endif // TEXTUREPARAMETERS_H

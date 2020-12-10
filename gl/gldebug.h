@@ -3,7 +3,7 @@
 
 #include "GL/glew.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
     void checkError();
     void printGLErrorCodeInEnglish(GLenum err);
@@ -14,6 +14,6 @@ namespace GL {
     void checkShaderCompilationStatus(GLuint shaderID);
     void checkShaderLinkStatus(GLuint shaderProgramID);
 
-}
+}}
 
 #endif // GLDEBUG_H

@@ -1,7 +1,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 class Texture {
 public:
@@ -21,6 +21,6 @@ protected:
     unsigned int m_handle;
 };
 
-}
+}}
 
 #endif // TEXTURE_H

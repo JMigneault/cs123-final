@@ -1,6 +1,6 @@
-#include "textureparametersbuilder.h"
+#include "TextureParametersBuilder.h"
 
-using namespace GL;
+using namespace CS123::GL;
 
 TextureParametersBuilder::TextureParametersBuilder() :
     m_filterMethod(TextureParameters::FILTER_METHOD::NEAREST),

@@ -1,8 +1,8 @@
-#include "depthbuffer.h"
+#include "DepthBuffer.h"
 
 #include "GL/glew.h"
 
-using namespace GL;
+using namespace CS123::GL;
 
 DepthBuffer::DepthBuffer(int width, int height) :
     m_width(width),

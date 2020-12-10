@@ -1,11 +1,11 @@
 #ifndef TEXTURE2D_H
 #define TEXTURE2D_H
 
-#include "texture.h"
+#include "Texture.h"
 
 #include "GL/glew.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 class Texture2D : public Texture {
 public:
@@ -15,6 +15,6 @@ public:
     virtual void unbind() const override;
 };
 
-}
+}}
 
 #endif // TEXTURE2D_H

@@ -4,9 +4,9 @@
 #include <memory>
 #include <vector>
 
-#include "gl/textures/TextureParameters.h"
+#include "gl/textures/textureparameters.h"
 
-namespace GL {
+namespace CS123 { namespace GL {
 
 class RenderBuffer;
 class Texture2D;
@@ -46,6 +46,6 @@ private:
     int m_height;
 };
 
-}
+} }
 
 #endif // FBO_H

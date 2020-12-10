@@ -1,8 +1,8 @@
-#include "renderbuffer.h"
+#include "RenderBuffer.h"
 
 #include "GL/glew.h"
 
-using namespace GL;
+using namespace CS123::GL;
 
 RenderBuffer::RenderBuffer() :
     m_handle(0)
