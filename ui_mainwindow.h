@@ -103,19 +103,35 @@ public:
     QRadioButton *shapeTypeSpecial2;
     QGroupBox *shapeParameters;
     QGridLayout *gridLayout_4;
-    QLabel *shapeParameterLabel1;
-    QLabel *shapeParameterLabel2;
-    QLabel *shapeParameterLabel3;
-    QSlider *shapeParameterSlider1;
     QSlider *shapeParameterSlider2;
-    QSlider *shapeParameterSlider3;
     QLineEdit *shapeParameterTextbox1;
     QLineEdit *shapeParameterTextbox2;
+    QLabel *shapeParameterLabel1;
+    QLabel *shapeParameterLabel2;
+    QSlider *shapeParameterSlider1;
+    QGroupBox *shapeParameters_3;
+    QGridLayout *gridLayout_18;
+    QSlider *shapeParameterSlider3;
+    QLabel *shapeParameterLabel2_3;
+    QLabel *shapeParameterLabel1_3;
+    QSlider *shapeParameterSlider4;
     QLineEdit *shapeParameterTextbox3;
-    QCheckBox *useLightingCheckbox;
-    QCheckBox *drawWireframeCheckbox;
-    QCheckBox *drawNormalsCheckbox;
+    QLineEdit *shapeParameterTextbox4;
     QWidget *shapesDockEmptySpace;
+    QGroupBox *shapeParameters_2;
+    QGridLayout *gridLayout_16;
+    QLineEdit *shapeParameterTextbox6;
+    QSlider *shapeParameterSlider6;
+    QSlider *shapeParameterSlider7;
+    QLabel *shapeParameterLabel1_2;
+    QLineEdit *shapeParameterTextbox9;
+    QLabel *shapeParameterLabel3_4;
+    QLineEdit *shapeParameterTextbox5;
+    QSlider *shapeParameterSlider9;
+    QSlider *shapeParameterSlider5;
+    QLabel *shapeParameterLabel2_2;
+    QLabel *shapeParameterLabel3_2;
+    QLineEdit *shapeParameterTextbox7;
     QDockWidget *filterDock;
     QWidget *filterDockContents;
     QVBoxLayout *verticalLayout_5;
@@ -287,7 +303,7 @@ public:
         scrollArea->setWidgetResizable(true);
         canvas2D = new Canvas2D();
         canvas2D->setObjectName(QString::fromUtf8("canvas2D"));
-        canvas2D->setGeometry(QRect(0, 0, 363, 3065));
+        canvas2D->setGeometry(QRect(0, 0, 360, 3065));
         scrollArea->setWidget(canvas2D);
 
         gridLayout_11->addWidget(scrollArea, 0, 0, 1, 1);
@@ -572,41 +588,12 @@ public:
         gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
         gridLayout_4->setVerticalSpacing(5);
         gridLayout_4->setContentsMargins(-1, 5, -1, 5);
-        shapeParameterLabel1 = new QLabel(shapeParameters);
-        shapeParameterLabel1->setObjectName(QString::fromUtf8("shapeParameterLabel1"));
-
-        gridLayout_4->addWidget(shapeParameterLabel1, 0, 0, 1, 1);
-
-        shapeParameterLabel2 = new QLabel(shapeParameters);
-        shapeParameterLabel2->setObjectName(QString::fromUtf8("shapeParameterLabel2"));
-
-        gridLayout_4->addWidget(shapeParameterLabel2, 2, 0, 1, 1);
-
-        shapeParameterLabel3 = new QLabel(shapeParameters);
-        shapeParameterLabel3->setObjectName(QString::fromUtf8("shapeParameterLabel3"));
-
-        gridLayout_4->addWidget(shapeParameterLabel3, 4, 0, 1, 1);
-
-        shapeParameterSlider1 = new QSlider(shapeParameters);
-        shapeParameterSlider1->setObjectName(QString::fromUtf8("shapeParameterSlider1"));
-        shapeParameterSlider1->setMinimumSize(QSize(100, 0));
-        shapeParameterSlider1->setOrientation(Qt::Horizontal);
-
-        gridLayout_4->addWidget(shapeParameterSlider1, 0, 1, 1, 1);
-
         shapeParameterSlider2 = new QSlider(shapeParameters);
         shapeParameterSlider2->setObjectName(QString::fromUtf8("shapeParameterSlider2"));
         shapeParameterSlider2->setMinimumSize(QSize(100, 0));
         shapeParameterSlider2->setOrientation(Qt::Horizontal);
 
         gridLayout_4->addWidget(shapeParameterSlider2, 2, 1, 1, 1);
-
-        shapeParameterSlider3 = new QSlider(shapeParameters);
-        shapeParameterSlider3->setObjectName(QString::fromUtf8("shapeParameterSlider3"));
-        shapeParameterSlider3->setMinimumSize(QSize(100, 0));
-        shapeParameterSlider3->setOrientation(Qt::Horizontal);
-
-        gridLayout_4->addWidget(shapeParameterSlider3, 4, 1, 1, 1);
 
         shapeParameterTextbox1 = new QLineEdit(shapeParameters);
         shapeParameterTextbox1->setObjectName(QString::fromUtf8("shapeParameterTextbox1"));
@@ -622,35 +609,165 @@ public:
 
         gridLayout_4->addWidget(shapeParameterTextbox2, 2, 2, 1, 1);
 
-        shapeParameterTextbox3 = new QLineEdit(shapeParameters);
-        shapeParameterTextbox3->setObjectName(QString::fromUtf8("shapeParameterTextbox3"));
-        shapeParameterTextbox3->setMinimumSize(QSize(40, 0));
-        shapeParameterTextbox3->setMaximumSize(QSize(40, 16777215));
+        shapeParameterLabel1 = new QLabel(shapeParameters);
+        shapeParameterLabel1->setObjectName(QString::fromUtf8("shapeParameterLabel1"));
 
-        gridLayout_4->addWidget(shapeParameterTextbox3, 4, 2, 1, 1);
+        gridLayout_4->addWidget(shapeParameterLabel1, 0, 0, 1, 1);
+
+        shapeParameterLabel2 = new QLabel(shapeParameters);
+        shapeParameterLabel2->setObjectName(QString::fromUtf8("shapeParameterLabel2"));
+
+        gridLayout_4->addWidget(shapeParameterLabel2, 2, 0, 1, 1);
+
+        shapeParameterSlider1 = new QSlider(shapeParameters);
+        shapeParameterSlider1->setObjectName(QString::fromUtf8("shapeParameterSlider1"));
+        shapeParameterSlider1->setMinimumSize(QSize(100, 0));
+        shapeParameterSlider1->setOrientation(Qt::Horizontal);
+
+        gridLayout_4->addWidget(shapeParameterSlider1, 0, 1, 1, 1);
 
 
         verticalLayout_7->addWidget(shapeParameters);
 
-        useLightingCheckbox = new QCheckBox(shapesDockContents);
-        useLightingCheckbox->setObjectName(QString::fromUtf8("useLightingCheckbox"));
+        shapeParameters_3 = new QGroupBox(shapesDockContents);
+        shapeParameters_3->setObjectName(QString::fromUtf8("shapeParameters_3"));
+        gridLayout_18 = new QGridLayout(shapeParameters_3);
+        gridLayout_18->setSpacing(6);
+        gridLayout_18->setContentsMargins(11, 11, 11, 11);
+        gridLayout_18->setObjectName(QString::fromUtf8("gridLayout_18"));
+        gridLayout_18->setVerticalSpacing(5);
+        gridLayout_18->setContentsMargins(-1, 5, -1, 5);
+        shapeParameterSlider3 = new QSlider(shapeParameters_3);
+        shapeParameterSlider3->setObjectName(QString::fromUtf8("shapeParameterSlider3"));
+        shapeParameterSlider3->setMinimumSize(QSize(100, 0));
+        shapeParameterSlider3->setMaximum(99);
+        shapeParameterSlider3->setOrientation(Qt::Horizontal);
 
-        verticalLayout_7->addWidget(useLightingCheckbox);
+        gridLayout_18->addWidget(shapeParameterSlider3, 0, 1, 1, 1);
 
-        drawWireframeCheckbox = new QCheckBox(shapesDockContents);
-        drawWireframeCheckbox->setObjectName(QString::fromUtf8("drawWireframeCheckbox"));
+        shapeParameterLabel2_3 = new QLabel(shapeParameters_3);
+        shapeParameterLabel2_3->setObjectName(QString::fromUtf8("shapeParameterLabel2_3"));
 
-        verticalLayout_7->addWidget(drawWireframeCheckbox);
+        gridLayout_18->addWidget(shapeParameterLabel2_3, 2, 0, 1, 1);
 
-        drawNormalsCheckbox = new QCheckBox(shapesDockContents);
-        drawNormalsCheckbox->setObjectName(QString::fromUtf8("drawNormalsCheckbox"));
+        shapeParameterLabel1_3 = new QLabel(shapeParameters_3);
+        shapeParameterLabel1_3->setObjectName(QString::fromUtf8("shapeParameterLabel1_3"));
 
-        verticalLayout_7->addWidget(drawNormalsCheckbox);
+        gridLayout_18->addWidget(shapeParameterLabel1_3, 0, 0, 1, 1);
+
+        shapeParameterSlider4 = new QSlider(shapeParameters_3);
+        shapeParameterSlider4->setObjectName(QString::fromUtf8("shapeParameterSlider4"));
+        shapeParameterSlider4->setMinimumSize(QSize(100, 0));
+        shapeParameterSlider4->setOrientation(Qt::Horizontal);
+
+        gridLayout_18->addWidget(shapeParameterSlider4, 2, 1, 1, 1);
+
+        shapeParameterTextbox3 = new QLineEdit(shapeParameters_3);
+        shapeParameterTextbox3->setObjectName(QString::fromUtf8("shapeParameterTextbox3"));
+        shapeParameterTextbox3->setMinimumSize(QSize(40, 0));
+        shapeParameterTextbox3->setMaximumSize(QSize(40, 16777215));
+
+        gridLayout_18->addWidget(shapeParameterTextbox3, 0, 2, 1, 1);
+
+        shapeParameterTextbox4 = new QLineEdit(shapeParameters_3);
+        shapeParameterTextbox4->setObjectName(QString::fromUtf8("shapeParameterTextbox4"));
+        shapeParameterTextbox4->setMinimumSize(QSize(40, 0));
+        shapeParameterTextbox4->setMaximumSize(QSize(40, 16777215));
+
+        gridLayout_18->addWidget(shapeParameterTextbox4, 2, 2, 1, 1);
+
+
+        verticalLayout_7->addWidget(shapeParameters_3);
 
         shapesDockEmptySpace = new QWidget(shapesDockContents);
         shapesDockEmptySpace->setObjectName(QString::fromUtf8("shapesDockEmptySpace"));
         sizePolicy2.setHeightForWidth(shapesDockEmptySpace->sizePolicy().hasHeightForWidth());
         shapesDockEmptySpace->setSizePolicy(sizePolicy2);
+        shapeParameters_2 = new QGroupBox(shapesDockEmptySpace);
+        shapeParameters_2->setObjectName(QString::fromUtf8("shapeParameters_2"));
+        shapeParameters_2->setGeometry(QRect(0, 0, 212, 161));
+        gridLayout_16 = new QGridLayout(shapeParameters_2);
+        gridLayout_16->setSpacing(6);
+        gridLayout_16->setContentsMargins(11, 11, 11, 11);
+        gridLayout_16->setObjectName(QString::fromUtf8("gridLayout_16"));
+        gridLayout_16->setVerticalSpacing(5);
+        gridLayout_16->setContentsMargins(-1, 5, -1, 5);
+        shapeParameterTextbox6 = new QLineEdit(shapeParameters_2);
+        shapeParameterTextbox6->setObjectName(QString::fromUtf8("shapeParameterTextbox6"));
+        shapeParameterTextbox6->setMinimumSize(QSize(40, 0));
+        shapeParameterTextbox6->setMaximumSize(QSize(40, 16777215));
+
+        gridLayout_16->addWidget(shapeParameterTextbox6, 5, 2, 1, 1);
+
+        shapeParameterSlider6 = new QSlider(shapeParameters_2);
+        shapeParameterSlider6->setObjectName(QString::fromUtf8("shapeParameterSlider6"));
+        shapeParameterSlider6->setMinimumSize(QSize(100, 0));
+        shapeParameterSlider6->setOrientation(Qt::Horizontal);
+
+        gridLayout_16->addWidget(shapeParameterSlider6, 5, 1, 1, 1);
+
+        shapeParameterSlider7 = new QSlider(shapeParameters_2);
+        shapeParameterSlider7->setObjectName(QString::fromUtf8("shapeParameterSlider7"));
+        shapeParameterSlider7->setMinimumSize(QSize(100, 0));
+        shapeParameterSlider7->setOrientation(Qt::Horizontal);
+
+        gridLayout_16->addWidget(shapeParameterSlider7, 2, 1, 1, 1);
+
+        shapeParameterLabel1_2 = new QLabel(shapeParameters_2);
+        shapeParameterLabel1_2->setObjectName(QString::fromUtf8("shapeParameterLabel1_2"));
+
+        gridLayout_16->addWidget(shapeParameterLabel1_2, 0, 0, 1, 1);
+
+        shapeParameterTextbox9 = new QLineEdit(shapeParameters_2);
+        shapeParameterTextbox9->setObjectName(QString::fromUtf8("shapeParameterTextbox9"));
+        shapeParameterTextbox9->setMinimumSize(QSize(40, 0));
+        shapeParameterTextbox9->setMaximumSize(QSize(40, 16777215));
+
+        gridLayout_16->addWidget(shapeParameterTextbox9, 12, 2, 1, 1);
+
+        shapeParameterLabel3_4 = new QLabel(shapeParameters_2);
+        shapeParameterLabel3_4->setObjectName(QString::fromUtf8("shapeParameterLabel3_4"));
+
+        gridLayout_16->addWidget(shapeParameterLabel3_4, 12, 0, 1, 1);
+
+        shapeParameterTextbox5 = new QLineEdit(shapeParameters_2);
+        shapeParameterTextbox5->setObjectName(QString::fromUtf8("shapeParameterTextbox5"));
+        shapeParameterTextbox5->setMinimumSize(QSize(40, 0));
+        shapeParameterTextbox5->setMaximumSize(QSize(40, 16777215));
+
+        gridLayout_16->addWidget(shapeParameterTextbox5, 0, 2, 1, 1);
+
+        shapeParameterSlider9 = new QSlider(shapeParameters_2);
+        shapeParameterSlider9->setObjectName(QString::fromUtf8("shapeParameterSlider9"));
+        shapeParameterSlider9->setMinimumSize(QSize(100, 0));
+        shapeParameterSlider9->setOrientation(Qt::Horizontal);
+
+        gridLayout_16->addWidget(shapeParameterSlider9, 12, 1, 1, 1);
+
+        shapeParameterSlider5 = new QSlider(shapeParameters_2);
+        shapeParameterSlider5->setObjectName(QString::fromUtf8("shapeParameterSlider5"));
+        shapeParameterSlider5->setMinimumSize(QSize(100, 0));
+        shapeParameterSlider5->setOrientation(Qt::Horizontal);
+
+        gridLayout_16->addWidget(shapeParameterSlider5, 0, 1, 1, 1);
+
+        shapeParameterLabel2_2 = new QLabel(shapeParameters_2);
+        shapeParameterLabel2_2->setObjectName(QString::fromUtf8("shapeParameterLabel2_2"));
+
+        gridLayout_16->addWidget(shapeParameterLabel2_2, 5, 0, 1, 1);
+
+        shapeParameterLabel3_2 = new QLabel(shapeParameters_2);
+        shapeParameterLabel3_2->setObjectName(QString::fromUtf8("shapeParameterLabel3_2"));
+
+        gridLayout_16->addWidget(shapeParameterLabel3_2, 2, 0, 1, 1);
+
+        shapeParameterTextbox7 = new QLineEdit(shapeParameters_2);
+        shapeParameterTextbox7->setObjectName(QString::fromUtf8("shapeParameterTextbox7"));
+        shapeParameterTextbox7->setMinimumSize(QSize(40, 0));
+        shapeParameterTextbox7->setMaximumSize(QSize(40, 16777215));
+
+        gridLayout_16->addWidget(shapeParameterTextbox7, 2, 2, 1, 1);
+
 
         verticalLayout_7->addWidget(shapesDockEmptySpace);
 
@@ -1416,7 +1533,6 @@ public:
         QObject::connect(resetUpVector, SIGNAL(clicked()), MainWindow, SLOT(resetUpVector()));
         QObject::connect(cameraOrbitCheckbox, SIGNAL(toggled(bool)), cameraResetAxis, SLOT(setDisabled(bool)));
         QObject::connect(showSceneviewInstead, SIGNAL(toggled(bool)), shapeType, SLOT(setDisabled(bool)));
-        QObject::connect(rayStopRenderingButton, SIGNAL(clicked()), canvas2D, SLOT(cancelRender()));
         QObject::connect(filterButton, SIGNAL(clicked()), MainWindow, SLOT(filterImage()));
         QObject::connect(actionCopy3Dto2D, SIGNAL(triggered()), MainWindow, SLOT(fileCopy3Dto2D()));
         QObject::connect(zAxisButton, SIGNAL(clicked()), MainWindow, SLOT(setCameraAxisZ()));
@@ -1427,8 +1543,9 @@ public:
         QObject::connect(resetSliders, SIGNAL(clicked()), MainWindow, SLOT(resetSliders()));
         QObject::connect(actionUseOrbitingCamera, SIGNAL(toggled(bool)), cameraOrbitCheckbox, SLOT(setChecked(bool)));
         QObject::connect(cameraOrbitCheckbox, SIGNAL(toggled(bool)), actionUseOrbitingCamera, SLOT(setChecked(bool)));
+        QObject::connect(rayStopRenderingButton, SIGNAL(clicked()), canvas2D, SLOT(cancelRender()));
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1500,10 +1617,14 @@ public:
         shapeParameters->setTitle(QCoreApplication::translate("MainWindow", "Shape Parameters", nullptr));
         shapeParameterLabel1->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         shapeParameterLabel2->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
-        shapeParameterLabel3->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
-        useLightingCheckbox->setText(QCoreApplication::translate("MainWindow", "Use lighting", nullptr));
-        drawWireframeCheckbox->setText(QCoreApplication::translate("MainWindow", "Draw wireframe", nullptr));
-        drawNormalsCheckbox->setText(QCoreApplication::translate("MainWindow", "Draw normals", nullptr));
+        shapeParameters_3->setTitle(QCoreApplication::translate("MainWindow", "Sun Parameters", nullptr));
+        shapeParameterLabel2_3->setText(QCoreApplication::translate("MainWindow", "Decay", nullptr));
+        shapeParameterLabel1_3->setText(QCoreApplication::translate("MainWindow", "Intensity", nullptr));
+        shapeParameters_2->setTitle(QCoreApplication::translate("MainWindow", "Crepescular Parameters", nullptr));
+        shapeParameterLabel1_2->setText(QCoreApplication::translate("MainWindow", "Exposure", nullptr));
+        shapeParameterLabel3_4->setText(QCoreApplication::translate("MainWindow", "Phong", nullptr));
+        shapeParameterLabel2_2->setText(QCoreApplication::translate("MainWindow", "Decay", nullptr));
+        shapeParameterLabel3_2->setText(QCoreApplication::translate("MainWindow", "Weight", nullptr));
         filterDock->setWindowTitle(QCoreApplication::translate("MainWindow", "F&ilter", nullptr));
         filterType->setTitle(QCoreApplication::translate("MainWindow", "Filter Type", nullptr));
         filterTypeEdgeDetect->setText(QCoreApplication::translate("MainWindow", "Edge Detect", nullptr));

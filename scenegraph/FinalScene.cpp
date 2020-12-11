@@ -61,7 +61,7 @@ void FinalScene::buildQuad() {
 
 void FinalScene::initializeFBOs() {
     // Make FBOs
-    m_phongFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::NONE,
+    m_phongFBO = std::make_unique<FBO>(1, FBO::DEPTH_STENCIL_ATTACHMENT::DEPTH_ONLY,
                                       m_width, m_height,
                                       TextureParameters::WRAP_METHOD::CLAMP_TO_EDGE,
                                       TextureParameters::FILTER_METHOD::NEAREST, GL_FLOAT);
@@ -134,16 +134,35 @@ void FinalScene::loadMergeShader() {
     m_mergeShader = std::make_unique<Shader>(vertexSource, fragmentSource);
 }
 
+float uiToRange(int uiValue, float min, float max) {
+    return glm::mix(min, max, (uiValue / 100.0));
+}
+
 void FinalScene::render(SupportCanvas3D *context) {
     printf("RENDERING!");
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glm::vec3 sunPosition = glm::vec3(0.0, 0.0, 100000.0);
+    // CONSTANTS
+    glm::vec3 sunPosition = glm::vec3(100.0, 250.0, -1000.0);
     glm::vec4 screenSunPosUnnorm = (context->getCamera()->getProjectionMatrix()
                               * context->getCamera()->getViewMatrix()
                               * glm::vec4(sunPosition, 1));
     glm::vec2 screenSunPos = screenSunPosUnnorm.xy() / screenSunPosUnnorm.w;
+
+    // sun constants
+    glm::vec3 color(0.05f, 0.05f, 0.12f);
+    float sunStrength = uiToRange(settings.sunStrength, 0.0f, 1.5f);
+    float sunDecay = uiToRange(settings.sunDecay, 1.0f, 15.0f);
+
+    // crepescular constants
+    float exposure = uiToRange(settings.crepExposure, 0.0f, 1.5f);
+    float decay = uiToRange(settings.crepDecay, 1.0f, .99f);
+    float weight = uiToRange(settings.crepWeight, 0.0f, 1.5f);
+    float density = 1.0f; // uiToRange(settings.crepDensity, 1.0f, 2.0f);
+
+    // merge constants
+    float phongWeight = uiToRange(settings.crepScene, 1.0f, 0.0f);
 
     // normal phong render
     m_phongFBO->bind();
@@ -180,11 +199,6 @@ void FinalScene::render(SupportCanvas3D *context) {
     GLint texPosition = glGetUniformLocation(m_lightShader->getID(), "tex");
     glUniform1i(texPosition, 0);
 
-    // constants
-    glm::vec3 color(0.05f, 0.05f, 0.12f);
-    float sunStrength = 1.0f;
-    float sunDecay = 1.0f;
-
     // Uniforms
     m_lightShader->setUniform("color", color);
     m_lightShader->setUniform("screenSunPos", screenSunPos);
@@ -200,12 +214,6 @@ void FinalScene::render(SupportCanvas3D *context) {
     m_crepFBO->bind();
     m_crepShader->bind();
     m_lightFBO->getColorAttachment(0).bind();
-
-    // constants
-    float exposure = 0.95f;
-    float decay = .995f;
-    float weight = 0.9;
-    float density = 1.0;
 
     // Uniforms
     m_crepShader->setUniform("screenSunPos", screenSunPos);
@@ -234,9 +242,6 @@ void FinalScene::render(SupportCanvas3D *context) {
     m_phongFBO->getColorAttachment(0).bind();
 
     glActiveTexture(GL_TEXTURE0);
-
-    // constants
-    float phongWeight = 1.0f;
 
     m_mergeShader->setUniform("phongWeight", phongWeight);
 

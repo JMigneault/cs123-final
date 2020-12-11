@@ -72,7 +72,20 @@ void Settings::loadSettingsOrDefaults() {
     useSpotLights = s.value("useSpotLights", true).toBool();
     useKDTree = s.value("useKDTree", true).toBool();
 
-    currentTab = s.value("currentTab", TAB_2D).toBool();
+    // Final
+    sunStrength = s.value("sunStrength", 1.0).toFloat();
+    sunDecay = s.value("sunDecay", 1.0).toFloat();
+
+    crepExposure = s.value("crepExposure", 1.0).toFloat();
+    crepDecay = s.value("crepDecay", 1.0).toFloat();
+    crepWeight = s.value("crepWeight", 1.0).toFloat();
+    crepDensity = s.value("crepDensity", 1.0).toFloat();
+    crepScene = s.value("crepScene", 1.0).toFloat();
+
+
+    currentTab = s.value("currentTab", TAB_3D).toBool();
+
+
 
     // These are for computing deltas and the values don't matter, so start all dials in the up
     // position
@@ -131,6 +144,17 @@ void Settings::saveSettings() {
     s.setValue("useDirectionalLights", useDirectionalLights);
     s.setValue("useSpotLights", useSpotLights);
     s.setValue("useKDTree", useKDTree);
+
+    // Final
+    s.setValue("sunStrength", sunStrength);
+    s.setValue("sunDecay", sunDecay);
+
+    s.setValue("crepExposure", crepExposure);
+    s.setValue("crepDecay", crepDecay);
+    s.setValue("crepWeight", crepWeight);
+    s.setValue("crepDensity", crepDensity);
+    s.setValue("crepScene", crepScene);
+
 
     s.setValue("currentTab", currentTab);
 }

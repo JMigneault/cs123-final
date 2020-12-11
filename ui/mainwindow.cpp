@@ -27,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QGridLayout *gridLayout = new QGridLayout(ui->canvas3D);
     m_canvas3D = new SupportCanvas3D(qglFormat, this);
     gridLayout->addWidget(m_canvas3D, 0, 1);
-    // ui->tabWidget->setCurrentWidget(ui->tab2D);
+    ui->tabWidget->setCurrentWidget(ui->tab2D);
     ui->tabWidget->setCurrentWidget(ui->tab3D);
 
     // Restore the UI settings
@@ -195,11 +195,23 @@ void MainWindow::dataBind() {
         ui->shapeParameterSlider1, ui->shapeParameterTextbox1, settings.shapeParameter1, 1.f, 100.f))
     BIND(IntBinding::bindSliderAndTextbox(
         ui->shapeParameterSlider2, ui->shapeParameterTextbox2, settings.shapeParameter2, 1.f, 100.f))
+    // sun
     BIND(FloatBinding::bindSliderAndTextbox(
-        ui->shapeParameterSlider3, ui->shapeParameterTextbox3, settings.shapeParameter3, 1.f, 100.f))
-    BIND(BoolBinding::bindCheckbox(ui->useLightingCheckbox, settings.useLighting))
-    BIND(BoolBinding::bindCheckbox(ui->drawWireframeCheckbox, settings.drawWireframe))
-    BIND(BoolBinding::bindCheckbox(ui->drawNormalsCheckbox, settings.drawNormals))
+        ui->shapeParameterSlider3, ui->shapeParameterTextbox3, settings.sunStrength, 1.f, 100.f))
+    BIND(FloatBinding::bindSliderAndTextbox(
+        ui->shapeParameterSlider4, ui->shapeParameterTextbox4, settings.sunDecay, 1.f, 100.f))
+    // crep
+    BIND(FloatBinding::bindSliderAndTextbox(
+        ui->shapeParameterSlider5, ui->shapeParameterTextbox5, settings.crepExposure, 1.f, 100.f))
+    BIND(FloatBinding::bindSliderAndTextbox(
+        ui->shapeParameterSlider6, ui->shapeParameterTextbox6, settings.crepDecay, 1.f, 100.f))
+    BIND(FloatBinding::bindSliderAndTextbox(
+        ui->shapeParameterSlider7, ui->shapeParameterTextbox7, settings.crepWeight, 1.f, 100.f))
+/*    BIND(FloatBinding::bindSliderAndTextbox(
+        ui->shapeParameterSlider8, ui->shapeParameterTextbox8, settings.crepDensity, 1.f, 100.f)) */
+    BIND(FloatBinding::bindSliderAndTextbox(
+        ui->shapeParameterSlider9, ui->shapeParameterTextbox9, settings.crepScene, 1.f, 100.f))
+
 
     // Camtrans dock
     BIND(BoolBinding::bindCheckbox(ui->cameraOrbitCheckbox, settings.useOrbitCamera))

@@ -39,7 +39,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab2D">
        <attribute name="title">
@@ -83,7 +83,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>363</width>
+             <width>360</width>
              <height>3065</height>
             </rect>
            </property>
@@ -542,55 +542,8 @@
         <property name="verticalSpacing">
          <number>5</number>
         </property>
-        <item row="0" column="0">
-         <widget class="QLabel" name="shapeParameterLabel1">
-          <property name="text">
-           <string>1</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="shapeParameterLabel2">
-          <property name="text">
-           <string>2</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="shapeParameterLabel3">
-          <property name="text">
-           <string>3</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QSlider" name="shapeParameterSlider1">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
         <item row="2" column="1">
          <widget class="QSlider" name="shapeParameterSlider2">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QSlider" name="shapeParameterSlider3">
           <property name="minimumSize">
            <size>
             <width>100</width>
@@ -634,8 +587,112 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="2">
+        <item row="0" column="0">
+         <widget class="QLabel" name="shapeParameterLabel1">
+          <property name="text">
+           <string>1</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="shapeParameterLabel2">
+          <property name="text">
+           <string>2</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QSlider" name="shapeParameterSlider1">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="shapeParameters_3">
+       <property name="title">
+        <string>Sun Parameters</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_18">
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="bottomMargin">
+         <number>5</number>
+        </property>
+        <property name="verticalSpacing">
+         <number>5</number>
+        </property>
+        <item row="0" column="1">
+         <widget class="QSlider" name="shapeParameterSlider3">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximum">
+           <number>99</number>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="shapeParameterLabel2_3">
+          <property name="text">
+           <string>Decay</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="shapeParameterLabel1_3">
+          <property name="text">
+           <string>Intensity</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QSlider" name="shapeParameterSlider4">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
          <widget class="QLineEdit" name="shapeParameterTextbox3">
+          <property name="minimumSize">
+           <size>
+            <width>40</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>40</width>
+            <height>16777215</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2">
+         <widget class="QLineEdit" name="shapeParameterTextbox4">
           <property name="minimumSize">
            <size>
             <width>40</width>
@@ -654,27 +711,6 @@
       </widget>
      </item>
      <item>
-      <widget class="QCheckBox" name="useLightingCheckbox">
-       <property name="text">
-        <string>Use lighting</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="drawWireframeCheckbox">
-       <property name="text">
-        <string>Draw wireframe</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="drawNormalsCheckbox">
-       <property name="text">
-        <string>Draw normals</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <widget class="QWidget" name="shapesDockEmptySpace" native="true">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
@@ -682,6 +718,174 @@
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <widget class="QGroupBox" name="shapeParameters_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>212</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Crepescular Parameters</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_16">
+         <property name="topMargin">
+          <number>5</number>
+         </property>
+         <property name="bottomMargin">
+          <number>5</number>
+         </property>
+         <property name="verticalSpacing">
+          <number>5</number>
+         </property>
+         <item row="5" column="2">
+          <widget class="QLineEdit" name="shapeParameterTextbox6">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QSlider" name="shapeParameterSlider6">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QSlider" name="shapeParameterSlider7">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="shapeParameterLabel1_2">
+           <property name="text">
+            <string>Exposure</string>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="2">
+          <widget class="QLineEdit" name="shapeParameterTextbox9">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="0">
+          <widget class="QLabel" name="shapeParameterLabel3_4">
+           <property name="text">
+            <string>Phong</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="2">
+          <widget class="QLineEdit" name="shapeParameterTextbox5">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item row="12" column="1">
+          <widget class="QSlider" name="shapeParameterSlider9">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QSlider" name="shapeParameterSlider5">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="shapeParameterLabel2_2">
+           <property name="text">
+            <string>Decay</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="shapeParameterLabel3_2">
+           <property name="text">
+            <string>Weight</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2">
+          <widget class="QLineEdit" name="shapeParameterTextbox7">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>16777215</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
       </widget>
      </item>
     </layout>
@@ -2054,8 +2258,8 @@
      <y>1178</y>
     </hint>
     <hint type="destinationlabel">
-     <x>215</x>
-     <y>1206</y>
+     <x>210</x>
+     <y>1214</y>
     </hint>
    </hints>
   </connection>
@@ -2066,12 +2270,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>1249</y>
+     <x>205</x>
+     <y>1246</y>
     </hint>
     <hint type="destinationlabel">
-     <x>178</x>
-     <y>1277</y>
+     <x>164</x>
+     <y>1274</y>
     </hint>
    </hints>
   </connection>
@@ -2082,12 +2286,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>1249</y>
+     <x>205</x>
+     <y>1246</y>
     </hint>
     <hint type="destinationlabel">
-     <x>226</x>
-     <y>1276</y>
+     <x>210</x>
+     <y>1273</y>
     </hint>
    </hints>
   </connection>
@@ -2098,12 +2302,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>1320</y>
+     <x>205</x>
+     <y>1306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>226</x>
-     <y>1347</y>
+     <x>210</x>
+     <y>1333</y>
     </hint>
    </hints>
   </connection>
@@ -2114,12 +2318,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>1320</y>
+     <x>205</x>
+     <y>1306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>226</x>
-     <y>1374</y>
+     <x>210</x>
+     <y>1360</y>
     </hint>
    </hints>
   </connection>
@@ -2130,12 +2334,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>1320</y>
+     <x>205</x>
+     <y>1306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>178</x>
-     <y>1348</y>
+     <x>164</x>
+     <y>1334</y>
     </hint>
    </hints>
   </connection>
@@ -2146,12 +2350,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>195</x>
-     <y>1320</y>
+     <x>205</x>
+     <y>1306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>178</x>
-     <y>1375</y>
+     <x>164</x>
+     <y>1361</y>
     </hint>
    </hints>
   </connection>
@@ -2162,12 +2366,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>232</x>
-     <y>1837</y>
+     <x>210</x>
+     <y>1805</y>
     </hint>
     <hint type="destinationlabel">
-     <x>78</x>
-     <y>1864</y>
+     <x>67</x>
+     <y>1831</y>
     </hint>
    </hints>
   </connection>
@@ -2179,7 +2383,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>63</x>
-     <y>1793</y>
+     <y>1763</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2194,8 +2398,8 @@
    <slot>uncheckAllRayFeatures()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>241</x>
-     <y>1793</y>
+     <x>220</x>
+     <y>1763</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2211,7 +2415,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>119</x>
-     <y>2353</y>
+     <y>2379</y>
     </hint>
     <hint type="destinationlabel">
      <x>116</x>
@@ -2227,7 +2431,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>119</x>
-     <y>2353</y>
+     <y>2379</y>
     </hint>
     <hint type="destinationlabel">
      <x>116</x>
@@ -2242,8 +2446,8 @@
    <slot>setCameraAxisX()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>110</x>
-     <y>2693</y>
+     <x>111</x>
+     <y>2691</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2258,8 +2462,8 @@
    <slot>setCameraAxisY()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>110</x>
-     <y>2727</y>
+     <x>111</x>
+     <y>2720</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2274,8 +2478,8 @@
    <slot>setCameraAxonometric()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>232</x>
-     <y>2727</y>
+     <x>210</x>
+     <y>2720</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2290,8 +2494,8 @@
    <slot>updateCameraTranslation()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>86</x>
-     <y>2436</y>
+     <x>78</x>
+     <y>2464</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2306,8 +2510,8 @@
    <slot>updateCameraTranslation()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>156</x>
-     <y>2436</y>
+     <x>144</x>
+     <y>2464</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2322,8 +2526,8 @@
    <slot>updateCameraTranslation()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>226</x>
-     <y>2436</y>
+     <x>210</x>
+     <y>2464</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2338,8 +2542,8 @@
    <slot>updateCameraRotationU()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>86</x>
-     <y>2552</y>
+     <x>78</x>
+     <y>2573</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2354,8 +2558,8 @@
    <slot>updateCameraRotationN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>226</x>
-     <y>2552</y>
+     <x>210</x>
+     <y>2573</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2370,8 +2574,8 @@
    <slot>updateCameraRotationV()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>156</x>
-     <y>2552</y>
+     <x>144</x>
+     <y>2573</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2386,8 +2590,8 @@
    <slot>updateCameraClip()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>173</x>
-     <y>2799</y>
+     <x>154</x>
+     <y>2785</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2402,8 +2606,8 @@
    <slot>updateCameraClip()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>241</x>
-     <y>2798</y>
+     <x>220</x>
+     <y>2784</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2418,8 +2622,8 @@
    <slot>updateCameraClip()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>173</x>
-     <y>2826</y>
+     <x>154</x>
+     <y>2812</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2434,8 +2638,8 @@
    <slot>updateCameraClip()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>241</x>
-     <y>2825</y>
+     <x>220</x>
+     <y>2811</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2450,8 +2654,8 @@
    <slot>updateCameraHeightAngle()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>173</x>
-     <y>2772</y>
+     <x>154</x>
+     <y>2758</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2466,8 +2670,8 @@
    <slot>updateCameraHeightAngle()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>241</x>
-     <y>2771</y>
+     <x>220</x>
+     <y>2757</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2515,7 +2719,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>20</x>
-     <y>2132</y>
+     <y>2121</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2546,12 +2750,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>211</x>
-     <y>1249</y>
+     <x>210</x>
+     <y>1246</y>
     </hint>
     <hint type="destinationlabel">
-     <x>69</x>
-     <y>1277</y>
+     <x>50</x>
+     <y>1274</y>
     </hint>
    </hints>
   </connection>
@@ -2562,12 +2766,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>212</x>
-     <y>1418</y>
+     <x>210</x>
+     <y>1393</y>
     </hint>
     <hint type="destinationlabel">
-     <x>61</x>
-     <y>1446</y>
+     <x>45</x>
+     <y>1421</y>
     </hint>
    </hints>
   </connection>
@@ -2578,12 +2782,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>212</x>
-     <y>1418</y>
+     <x>210</x>
+     <y>1393</y>
     </hint>
     <hint type="destinationlabel">
-     <x>178</x>
-     <y>1446</y>
+     <x>164</x>
+     <y>1421</y>
     </hint>
    </hints>
   </connection>
@@ -2594,12 +2798,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>212</x>
-     <y>1418</y>
+     <x>210</x>
+     <y>1393</y>
     </hint>
     <hint type="destinationlabel">
-     <x>226</x>
-     <y>1445</y>
+     <x>210</x>
+     <y>1420</y>
     </hint>
    </hints>
   </connection>
@@ -2610,8 +2814,8 @@
    <slot>resetUpVector()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>224</x>
-     <y>2628</y>
+     <x>210</x>
+     <y>2633</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2627,11 +2831,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>130</x>
-     <y>2353</y>
+     <y>2379</y>
     </hint>
     <hint type="destinationlabel">
      <x>126</x>
-     <y>2735</y>
+     <y>2730</y>
     </hint>
    </hints>
   </connection>
@@ -2643,27 +2847,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>130</x>
-     <y>560</y>
+     <y>599</y>
     </hint>
     <hint type="destinationlabel">
      <x>126</x>
      <y>739</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>rayStopRenderingButton</sender>
-   <signal>clicked()</signal>
-   <receiver>canvas2D</receiver>
-   <slot>cancelRender()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>20</x>
-     <y>2166</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>278</x>
-     <y>67</y>
     </hint>
    </hints>
   </connection>
@@ -2675,7 +2863,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>119</x>
-     <y>1573</y>
+     <y>1534</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2706,8 +2894,8 @@
    <slot>setCameraAxisZ()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>232</x>
-     <y>2693</y>
+     <x>210</x>
+     <y>2691</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2738,12 +2926,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>159</x>
-     <y>1320</y>
+     <x>169</x>
+     <y>1306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>35</x>
-     <y>1348</y>
+     <x>24</x>
+     <y>1334</y>
     </hint>
    </hints>
   </connection>
@@ -2754,12 +2942,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>159</x>
-     <y>1320</y>
+     <x>169</x>
+     <y>1306</y>
     </hint>
     <hint type="destinationlabel">
-     <x>35</x>
-     <y>1375</y>
+     <x>24</x>
+     <y>1361</y>
     </hint>
    </hints>
   </connection>
@@ -2787,7 +2975,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>126</x>
-     <y>2852</y>
+     <y>2841</y>
     </hint>
     <hint type="destinationlabel">
      <x>299</x>
@@ -2807,7 +2995,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>117</x>
-     <y>2412</y>
+     <y>2379</y>
     </hint>
    </hints>
   </connection>
@@ -2819,11 +3007,27 @@
    <hints>
     <hint type="sourcelabel">
      <x>117</x>
-     <y>2412</y>
+     <y>2379</y>
     </hint>
     <hint type="destinationlabel">
      <x>-1</x>
      <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rayStopRenderingButton</sender>
+   <signal>clicked()</signal>
+   <receiver>canvas2D</receiver>
+   <slot>cancelRender()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>2150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>278</x>
+     <y>67</y>
     </hint>
    </hints>
   </connection>

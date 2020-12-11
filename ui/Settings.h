@@ -135,6 +135,17 @@ struct Settings {
     bool useSpotLights;         // Enable or disable spot lights (extra credit).
     bool useKDTree;
 
+    // Final
+    float sunStrength;
+    float sunDecay;
+
+    float crepExposure;
+    float crepDecay;
+    float crepWeight;
+    float crepDensity;
+    float crepScene;
+
+
     int getSceneMode();
     int getCameraMode();
 
